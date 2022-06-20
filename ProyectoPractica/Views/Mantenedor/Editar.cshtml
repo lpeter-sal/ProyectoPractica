@@ -14,46 +14,46 @@
         <input asp-for="idCliente" type="hidden" class="form-control">
           <div class="mb-3">
             <label class="form-label">Nombre Cliente: </label>
-            <input asp-for="nombre_cliente" asp-route-nombre_cliente="nombre_cliente" type="text" class="form-control" maxlength="50">
+            <input asp-for="nombre_cliente" asp-route-nombre_cliente="nombre_cliente" type="text" class="form-control" disabled>
             <span asp-validation-for="nombre_cliente" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Apellido Paterno:</label>
-            <input asp-for="primer_apellidocliente" asp-route-primer_apellidocliente="primer_apellidocliente" type="text" class="form-control" maxlength="50" >
+            <input asp-for="primer_apellidocliente" asp-route-primer_apellidocliente="primer_apellidocliente" type="text" class="form-control" maxlength="50" disabled>
             <span asp-validation-for="primer_apellidocliente" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Apellido Materno:</label>
-            <input asp-for="segundo_apellidocliente" asp-route-segundo_apellidocliente="segundo_apellidocliente" type="text" class="form-control" maxlength="50" >
+            <input asp-for="segundo_apellidocliente" asp-route-segundo_apellidocliente="segundo_apellidocliente" type="text" class="form-control" maxlength="50" disabled>
           </div>
           <div class="mb-3">
             <label class="form-label">Calle:</label>
-            <input asp-for="calle" type="text" class="form-control" maxlength="50">
+            <input asp-for="calle" type="text" class="form-control" maxlength="50" disabled>
             <span asp-validation-for="calle" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Numero casa/departamento:</label>
-            <input asp-for="numero" type="text" class="form-control" maxlength="6">
+            <input asp-for="numero" type="text" class="form-control" maxlength="6" disabled>
             <span asp-validation-for="numero" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Colonia:</label>
-            <input asp-for="colonia" type="text" class="form-control" maxlength="50">
+            <input asp-for="colonia" type="text" class="form-control" maxlength="50" disabled>
             <span asp-validation-for="colonia" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Codigo Postal:</label>
-            <input asp-for="codigo_postal" type="text" class="form-control" maxlength="5">
+            <input asp-for="codigo_postal" type="text" class="form-control" maxlength="5" disabled>
             <span asp-validation-for="codigo_postal" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">Telefono/Celular:</label>
-            <input asp-for="telefono" type="text" class="form-control" maxlength="10">
+            <input asp-for="telefono" type="text" class="form-control" maxlength="10" disabled>
             <span asp-validation-for="telefono" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <label class="form-label">RFC:</label>
-            <input asp-for="rfc_cliente" type="text" class="form-control" maxlength="13">
+            <input asp-for="rfc_cliente" type="text" class="form-control" maxlength="13" disabled>
             <span asp-validation-for="rfc_cliente" class="text-danger"></span>
           </div>
           <div class="mb-3">
@@ -67,10 +67,12 @@
           </div>
           <div class="mb-3">
               <label class="form-label">Documentos:</label>
-            <input asp-for="documentos" type="text" class="form-control" maxlength="50">
+            <input asp-for="documentos" type="text" class="form-control" maxlength="50" disabled>
             <span asp-validation-for="documentos" class="text-danger"></span>
           </div>
            <div class="mb-3">
+            <span class="text-light" style="background: #9CA1A7; border-radius: 3px; padding: 2px 1px 2px 1px;"><b>Solo escribir observaciones si el cliente prospecto es "Rechazado"</b>, de lo contrario, favor de poner, <b>Cliente Autorizado</b></span>
+            <br />
             <label class="form-label">Observaciones*:</label>
             <input asp-for="observaciones" onreset="true" type="text" class="form-control" placeholder="Agregar Observaciones">
             <span asp-validation-for="observaciones" class="text-danger"></span>

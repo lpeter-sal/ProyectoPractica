@@ -46,7 +46,7 @@ namespace ProyectoPractica.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(ClienteModel oCliente){
+        public IActionResult Editar(ClienteEditModel oCliente){
             //Guardar en la base de datos
 
             if (!ModelState.IsValid){

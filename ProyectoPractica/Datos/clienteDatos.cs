@@ -126,7 +126,7 @@ namespace ProyectoPractica.Datos
             return resp;
         }
 
-        public bool EditarAutorizado(ClienteModel oCliente)
+        public bool EditarAutorizado(ClienteEditModel oCliente)
         {
             //Metodo para Editar el estatus y observaciones de un cliente en especifico.
             bool resp;
@@ -138,9 +138,8 @@ namespace ProyectoPractica.Datos
                 {
                     conexion.Open();
                     //Mandamos a llamar el procedimiento almacenado que utilizaremos
-                    SqlCommand cdm = new SqlCommand("clientes_cambioEstatusAutorizado", conexion);
+                    SqlCommand cdm = new SqlCommand("clientes_cambioEstatus", conexion);
                     cdm.Parameters.AddWithValue("idCliente", oCliente.idCliente);
-                    cdm.Parameters.AddWithValue("nombre_cliente", oCliente.nombre_cliente);
                     cdm.Parameters.AddWithValue("estatus", oCliente.estatus);
                     cdm.Parameters.AddWithValue("observaciones", oCliente.observaciones);
                     cdm.CommandType = CommandType.StoredProcedure;
