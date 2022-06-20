@@ -1,0 +1,101 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    Agregar Cliente
+  </div>
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          @TempData["Mensaje"]
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    } else
+    {
+        <span class="alert alert-primary" role="alert">Los campos con * son Obligatorios.</span>
+    }
+  <div class="card-body">
+      <form asp-action="Guardar" asp-controller="Mantenedor" method="post">
+          <div class="mb-3">
+            <label class="form-label">Nombre Cliente*: </label>
+            <input asp-for="nombre_cliente" type="text" class="form-control" placeholder="Nombre del cliente" maxlength="50">
+            <span asp-validation-for="nombre_cliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Apellido Paterno*:</label>
+            <input asp-for="primer_apellidocliente" type="text" class="form-control" placeholder="Apellido paterno" maxlength="50">
+            <span asp-validation-for="primer_apellidocliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Apellido Materno:</label>
+            <input asp-for="segundo_apellidocliente" type="text" class="form-control" placeholder="Apellido materno" maxlength="50">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Calle*:</label>
+            <input asp-for="calle" type="text" class="form-control" placeholder=" Calle de su domicilio" maxlength="50">
+            <span asp-validation-for="calle" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Numero casa/departamento*:</label>
+            <input asp-for="numero" type="text" class="form-control" placeholder="Numero del domicilio" maxlength="6">
+            <span asp-validation-for="numero" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Colonia*:</label>
+            <input asp-for="colonia" type="text" class="form-control" placeholder="Colonia del domicilio" maxlength="50">
+            <span asp-validation-for="colonia" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Codigo Postal*:</label>
+            <input asp-for="codigo_postal" type="text" class="form-control" placeholder="Codigo Postal del domicilio" maxlength="5">
+            <span asp-validation-for="codigo_postal" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono/Celular*:</label>
+            <input asp-for="telefono" type="text" class="form-control" maxlength="10"/>
+            <span asp-validation-for="telefono" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">RFC*:</label>
+            <input asp-for="rfc_cliente" type="text" class="form-control" placeholder="RFC del Cliente" maxlength="13">
+            <span asp-validation-for="rfc_cliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+              <label for="formFileMultiple" class="form-label">Documentos*: </label>
+             <input asp-for="documentos" class="form-control" type="file" multiple>
+              <span asp-validation-for="documentos" class="text-danger"></span>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <!-- Button trigger modal -->
+         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Volver a la lista
+         </button>
+
+      </form>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Estas apunto de salir de la vista actual.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Se perderan todos los datos capturados y no se restaura la información.
+        ¿Estás seguro que quieres salir?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Permanecer</button>
+        <a asp-action="ListadoGeneral" asp-controller="Mantenedor" class="btn btn-danger" onclick="ShowPopup()">Salir</a>
+      </div>
+    </div>
+  </div>
+</div>

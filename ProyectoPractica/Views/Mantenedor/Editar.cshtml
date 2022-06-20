@@ -1,0 +1,85 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    Solicitud de Cliente
+  </div>
+  <span class="alert alert-warning" role="alert">Solo puede editar estatus y observaciones*</span>
+  <div class="card-body">
+      <form asp-action="Editar" asp-controller="Mantenedor" method="post">
+        <input asp-for="idCliente" type="hidden" class="form-control">
+          <div class="mb-3">
+            <label class="form-label">Nombre Cliente: </label>
+            <input asp-for="nombre_cliente" asp-route-nombre_cliente="nombre_cliente" type="text" class="form-control" maxlength="50">
+            <span asp-validation-for="nombre_cliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Apellido Paterno:</label>
+            <input asp-for="primer_apellidocliente" asp-route-primer_apellidocliente="primer_apellidocliente" type="text" class="form-control" maxlength="50" >
+            <span asp-validation-for="primer_apellidocliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Apellido Materno:</label>
+            <input asp-for="segundo_apellidocliente" asp-route-segundo_apellidocliente="segundo_apellidocliente" type="text" class="form-control" maxlength="50" >
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Calle:</label>
+            <input asp-for="calle" type="text" class="form-control" maxlength="50">
+            <span asp-validation-for="calle" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Numero casa/departamento:</label>
+            <input asp-for="numero" type="text" class="form-control" maxlength="6">
+            <span asp-validation-for="numero" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Colonia:</label>
+            <input asp-for="colonia" type="text" class="form-control" maxlength="50">
+            <span asp-validation-for="colonia" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Codigo Postal:</label>
+            <input asp-for="codigo_postal" type="text" class="form-control" maxlength="5">
+            <span asp-validation-for="codigo_postal" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono/Celular:</label>
+            <input asp-for="telefono" type="text" class="form-control" maxlength="10">
+            <span asp-validation-for="telefono" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">RFC:</label>
+            <input asp-for="rfc_cliente" type="text" class="form-control" maxlength="13">
+            <span asp-validation-for="rfc_cliente" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Estatus*:</label>
+              <select asp-for="estatus" type="text" class="form-control" name="estatus">
+                  <option value="Seleccionar">Seleccionar</option>
+                  <option value="Autorizado">Autorizado</option>
+                  <option value="Rechazado">Rechazado</option>
+              </select>
+            <span asp-validation-for="estatus" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Documentos:</label>
+            <input asp-for="documentos" type="text" class="form-control" maxlength="50">
+            <span asp-validation-for="documentos" class="text-danger"></span>
+          </div>
+           <div class="mb-3">
+            <label class="form-label">Observaciones*:</label>
+            <input asp-for="observaciones" onreset="true" type="text" class="form-control" placeholder="Agregar Observaciones">
+            <span asp-validation-for="observaciones" class="text-danger"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a asp-action="ListadoGeneral" asp-controller="Mantenedor" class="btn btn-info">Volver a la lista</a>
+    </form>
+
+  </div>
+</div>
+
