@@ -8,11 +8,11 @@ namespace ProyectoPractica.Controllers
 {
     public class MantenedorController : Controller
     {
-
+        //Creamos una interfaz/modelo en base a nuestro Modelo de datos
         clienteDatos _ClienteDatos = new clienteDatos();
 
         public IActionResult ListadoGeneral(){
-            //Mostrar el Listado General de los clientes
+            //Metodo paramMostrar el Listado General de los clientes
             var oLista = _ClienteDatos.ListadoGeneral();
             return View(oLista);
         }
@@ -46,7 +46,7 @@ namespace ProyectoPractica.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(ClienteModel oCliente){
+        public IActionResult Editar(ClienteEditModel oCliente){
             //Guardar en la base de datos
 
             if (!ModelState.IsValid){

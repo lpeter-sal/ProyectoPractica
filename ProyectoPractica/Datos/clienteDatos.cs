@@ -9,17 +9,21 @@ namespace ProyectoPractica.Datos
     {
         public List<ClienteModel> ListadoGeneral()
         {
+            //Lista para mandar a llamar la informacion desde la base de datos
             var oLista = new List<ClienteModel>();
             var cn = new Conexion();
             using (var conexion = new SqlConnection(cn.getCadenaSQL()))
             {
                 conexion.Open();
+
+                //Mandamos a llamar el procedimiento almacenado que usaremos
                 SqlCommand cdm = new SqlCommand("clientes_listadogeneral", conexion);
                 cdm.CommandType = CommandType.StoredProcedure;
                 using (var dr = cdm.ExecuteReader())
                 {
                     while (dr.Read())
                     {
+                        //Llenamos todos los campos que vienen de la base de datos de acuerdo a nuestro modelo de datos
                         oLista.Add(new ClienteModel()
                         {
                             idCliente = Convert.ToInt32(dr["idCliente"]),
@@ -39,16 +43,19 @@ namespace ProyectoPractica.Datos
                     }
                 }
             }
+            //Retornamos la lista completa, lista para mostrar
             return oLista;
         }
 
         public ClienteModel Obtener(int idCliente)
         {
+            //Mandamos a traer un solo campo en especifico
             var oCliente = new ClienteModel();
             var cn = new Conexion();
             using (var conexion = new SqlConnection(cn.getCadenaSQL()))
             {
                 conexion.Open();
+                //Mandamos a llamar el procedimiento almacenado que usaremos
                 SqlCommand cdm = new SqlCommand("clientes_listadoespecifico", conexion);
                 cdm.Parameters.AddWithValue("idCliente", idCliente);
                 cdm.CommandType = CommandType.StoredProcedure;
@@ -56,6 +63,7 @@ namespace ProyectoPractica.Datos
                 {
                     while (dr.Read())
                     {
+                        //Rellenamos todos llas columnas que necesitemos de ese campo
                         oCliente.idCliente = Convert.ToInt32(dr["idCliente"]);
                         oCliente.nombre_cliente = dr["nombre_cliente"].ToString();
                         oCliente.primer_apellidocliente = dr["primer_apellidocliente"].ToString();
@@ -72,19 +80,23 @@ namespace ProyectoPractica.Datos
                     }
                 }
             }
+            //Retornamos el cliente que encontramos con el procedimiento almacenado
             return oCliente;
         }
 
         public bool Guardar(ClienteModel oCliente)
         {
+            //Metodo para guardar clientes.
             bool resp;
 
+            //Usamos un trycatch por si algo no sale bien
             try
             {
                 var cn = new Conexion();
                 using (var conexion = new SqlConnection(cn.getCadenaSQL()))
                 {
                     conexion.Open();
+                    //Mandamos a llamar el procedimiento almacenado que usaremos
                     SqlCommand cdm = new SqlCommand("clientes_guardar", conexion);
                     cdm.Parameters.AddWithValue("nombre_cliente", oCliente.nombre_cliente);
                     cdm.Parameters.AddWithValue("primer_apellidocliente", oCliente.primer_apellidocliente);
@@ -101,41 +113,50 @@ namespace ProyectoPractica.Datos
                     cdm.CommandType = CommandType.StoredProcedure;
                     cdm.ExecuteNonQuery();
                 }
+                //Si todo salio correcto y el usuario se guardo de forma exitosa, guardamos respuesta como True
                 resp = true;
             }
             catch (Exception e)
             {
+                //Si ocurrio un error, lo guardamos en la variable error y resp la guardamos como false
                 string error = e.Message;
                 resp = false;
             }
+            //Retornamos la respuesta
             return resp;
         }
 
-        public bool EditarAutorizado(ClienteModel oCliente)
+        public bool EditarAutorizado(ClienteEditModel oCliente)
         {
+            //Metodo para Editar el estatus y observaciones de un cliente en especifico.
             bool resp;
-
+            //Usamos un trycatch por si algo no sale bien
             try
             {
                 var cn = new Conexion();
                 using (var conexion = new SqlConnection(cn.getCadenaSQL()))
                 {
                     conexion.Open();
-                    SqlCommand cdm = new SqlCommand("clientes_cambioEstatusAutorizado", conexion);
+                    //Mandamos a llamar el procedimiento almacenado que utilizaremos
+                    SqlCommand cdm = new SqlCommand("clientes_cambioEstatus", conexion);
                     cdm.Parameters.AddWithValue("idCliente", oCliente.idCliente);
-                    cdm.Parameters.AddWithValue("nombre_cliente", oCliente.nombre_cliente);
                     cdm.Parameters.AddWithValue("estatus", oCliente.estatus);
                     cdm.Parameters.AddWithValue("observaciones", oCliente.observaciones);
                     cdm.CommandType = CommandType.StoredProcedure;
                     cdm.ExecuteNonQuery();
                 }
+                //Si todo salio correcto y el usuario se guardo de forma exitosa, guardamos respuesta como True
+
                 resp = true;
             }
             catch (Exception e)
             {
+                //Si ocurrio un error, lo guardamos en la variable error y resp la guardamos como false
                 string error = e.Message;
                 resp = false;
             }
+            //Retornamos la respuesta
+
             return resp;
         }
     }
