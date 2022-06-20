@@ -4,6 +4,8 @@ namespace ProyectoPractica.Models
 {
     public class ClienteModel
     {
+        //Definimos el modelo que necesitaremos para la captura de informacion, con sus validaciones y requerimientos.
+        //Si algun requerimiento no se cumple se retornara un mensaje de error personalizado
         public int idCliente { get; set; }
 
         [Required(ErrorMessage = "El campo nombre es obligatorio")]
